@@ -1,4 +1,4 @@
-# Revision history for Lox
+# Revision history for lox-haskell
 
 ## 0.1.0.0 -- YYYY-mm-dd
 
