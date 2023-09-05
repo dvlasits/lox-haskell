@@ -42,7 +42,12 @@ isAtEnd = do
         source <- gets (view source)
         return (cur >= length source)
 
-advance = undefined
+advance :: StateT ScanEnv IO Char
+advance = do 
+        current' <- gets (view current)
+        current %= (+1)
+        gets (fromJust . preview (source . ix current'))
+
 
 addToken :: TokenType -> StateT ScanEnv IO Token
 addToken typet = addToken' typet Null
@@ -60,7 +65,7 @@ scanToken = do
         case c of 
             '(' -> addToken LEFT_PAREN
             ')' -> addToken RIGHT_PAREN
-            
+
 
 
 scan' :: StateT ScanEnv IO [Token]
